@@ -7,7 +7,7 @@ on:
 
 env:
   environment: ${{ github.event.client_payload.environment }}
-  region: "ap-south-1"
+  region: "us-east-1"
   deployment_info: ${{ github.event.client_payload.deployment_info }}
   image_tag: ${{ github.event.client_payload.image_tag }}
 
