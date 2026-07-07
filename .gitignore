@@ -223,4 +223,6 @@ __marimo__/
 *.tfstate
 *.tfstate.backup
 *.tfvars
+!infra/vars/dev.tfvars
+!infra/vars/prod.tfvars
 terraform.tfplan
