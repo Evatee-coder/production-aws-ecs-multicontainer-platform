@@ -1,11 +1,11 @@
-# this is like a variable but no user input is needed. It is a local variable that can be used in the terraform code.
-# one data used at multiple places, so we define it here to avoid repetition and make it easier to change in the future.
+# # this is like a variable but no user input is needed. It is a local variable that can be used in the terraform code.
+# # one data used at multiple places, so we define it here to avoid repetition and make it easier to change in the future.
 
 locals {
   db_data = {
     allocated_storage       = "30"
     max_allocated_storage   = 100
-    engine_version          = "14.15"
+    engine_version          = "14.20"
     engine                 = "postgres"
     instance_class          = "db.t3.small"
     ca_cert_name            = "rds-ca-rsa2048-g1"
