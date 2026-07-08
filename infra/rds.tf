@@ -39,7 +39,9 @@ resource "aws_db_instance" "postgres" {
   backup_retention_period         = lookup(local.db_data, "backup_retention_period", var.db_default_settings.backup_retention_period)
   db_name                         = lookup(local.db_data, "db_name", var.db_default_settings.db_name)
   auto_minor_version_upgrade      = true
-  deletion_protection             = true
+  deletion_protection             = var.environment == "dev" ? false : true #just added for destroying dev db instance
+  skip_final_snapshot             = var.environment == "dev" ? true : false #just added for destroying dev db instance
+  #deletion_protection             = true #old
   enabled_cloudwatch_logs_exports = lookup(local.db_data, "cloudwatch_logs", ["postgresql", "upgrade"])
   copy_tags_to_snapshot           = true
 
