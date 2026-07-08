@@ -86,6 +86,7 @@ locals {
 resource "aws_secretsmanager_secret" "app_deploy_data" {
   name        = "${var.environment}-${var.app_name}-flask-deploy-data"
   description = "Deployment data for the Flask app"
+  recovery_window_in_days = 0 #added for dev environment to avoid waiting for 7 days to delete the secret
 }
 
 resource "aws_secretsmanager_secret_version" "app_deploy_data_version" {

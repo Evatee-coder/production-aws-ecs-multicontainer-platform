@@ -112,7 +112,8 @@ resource "aws_secretsmanager_secret" "dbs_secret" {
   name                    = "db/${var.environment}-${aws_db_instance.postgres[0].identifier}"
   description             = "DB link"
   kms_key_id              = aws_kms_key.rds_kms.arn
-  recovery_window_in_days = 7
+  #recovery_window_in_days = 7
+  recovery_window_in_days = 0
   lifecycle {
     create_before_destroy = true
   }
