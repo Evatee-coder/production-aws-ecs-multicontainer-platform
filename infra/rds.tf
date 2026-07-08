@@ -55,7 +55,7 @@ resource "aws_rds_cluster" "postgres" {
   count                   = var.environment != "dev" ? 1 : 0
   cluster_identifier      = "${var.environment}-${var.app_name}-cluster"
   engine                  = "aurora-postgresql"
-  engine_version          = "14.9"
+  engine_version          = "14.20"
   master_username         = var.db_default_settings.db_admin_username
   master_password         = random_password.dbs_random_string.result
   database_name           = lookup(local.db_data, "db_name", var.db_default_settings.db_name)
