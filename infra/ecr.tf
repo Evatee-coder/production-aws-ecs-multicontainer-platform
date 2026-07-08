@@ -15,4 +15,7 @@ locals {
 resource "aws_ecr_repository" "python_app" {
   for_each = local.ecr_repo
   name = "${var.environment}-${var.app_name}-${each.value}"
+  force_delete = true
 }
+
+
