@@ -29,6 +29,33 @@ Infrastructure is provisioned separately for **Development** and **Production** 
 
 ---
 
+## 📚 Table of Contents
+
+- [Project Screenshot](#-project-screenshot)
+- [Project Overview](#-project-overview)
+- [Key Features](#-key-features)
+- [Architecture](#-architecture)
+- [Project Metrics](#-project-metrics)
+- [Tech Stack](#-tech-stack)
+- [Skills Demonstrated](#-skills-demonstrated)
+- [Enterprise Practices](#-enterprise-practices)
+- [Repository Structure](#-repository-structure)
+- [Application Features](#-application-features)
+- [Infrastructure Highlights](#-infrastructure-highlights)
+- [Infrastructure Design Decisions](#-infrastructure-design-decisions)
+- [CI/CD Pipeline](#-cicd-pipeline)
+- [Deployment Workflow](#-deployment-workflow)
+- [Running Locally](#-running-locally)
+- [Deploying to AWS](#-deploying-to-aws)
+- [Engineering Challenges & Lessons Learned](#-engineering-challenges--lessons-learned)
+- [Key Takeaways](#-key-takeaways)
+- [Future Improvements](#-future-improvements)
+- [Why This Project?](#-why-this-project)
+- [Author](#-author)
+- [License](#-license)
+
+---
+
 # 📸 Project Screenshot
 
 The screenshots below confirm the end-to-end deployment: DNS resolving correctly, TLS certificate active, the ALB routing traffic to ECS, and the application successfully connecting to RDS.
