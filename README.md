@@ -105,16 +105,17 @@ The goal is to demonstrate the complete lifecycle of provisioning, deploying, op
 
 | Metric | Value |
 |---------|-------|
-| Containers | 3 |
-| AWS Services Used | 15+ |
-| Terraform Resources | 40+ |
-| GitHub Actions Workflows | 3 |
-| Deployment Environments | 2 |
-| Auto Scaling Policies | Multiple |
+| Containers | 3 (Flask, Nginx, Redis) |
+| AWS Services Used | 15+ (ECS Fargate, ECR, ALB, RDS/Aurora, VPC, IAM, CloudWatch, Secrets Manager, KMS, Route53, ACM, NAT Gateway, EIP, Cloud Map, Security Groups)|
+| Terraform Resources | 40 unique resource blocks|
+| GitHub Actions Workflows | 3 (build-deploy.yaml, deploy-remote-hook.yaml, terraform.yaml)  |
+| Deployment Environments | 2 (dev, prod)|
 | Availability Zones | 2 |
 | Container Images | Flask, Nginx, Redis |
 | Infrastructure Provisioning | 100% Terraform |
 | Deployment Strategy | Rolling Updates |
+| RDS Engine | PostgreSQL 14.22 (RDS + Aurora cluster)|
+| Task CPU / Memory (per service)| 1024 CPU / 2048 MiB |
 
 ---
 
