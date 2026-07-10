@@ -112,7 +112,7 @@ The goal is to demonstrate the complete lifecycle of provisioning, deploying, op
 
 # 🏗 Architecture
 
-![Architecture Diagram](images/victor-adetayo-aws-architecture-dark.drawio.png)
+![Architecture Diagram](images/victor-eyelade-architecture.png)
 
 ### Architecture Highlights
 
