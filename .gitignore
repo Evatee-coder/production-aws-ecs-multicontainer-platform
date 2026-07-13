@@ -226,3 +226,4 @@ __marimo__/
 #!infra/vars/dev.tfvars
 #!infra/vars/prod.tfvars
 terraform.tfplan
+.terraform/
