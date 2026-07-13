@@ -8,7 +8,7 @@
 ![GitHub Actions](https://img.shields.io/badge/CI%2FCD-GitHub_Actions-2088FF?logo=github-actions)
 ![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)
 ![Flask](https://img.shields.io/badge/Flask-Web_App-black?logo=flask)
-![License](https://img.shields.io/badge/License-MIT-green)
+
 
 </p>
 
@@ -52,7 +52,7 @@ Infrastructure is provisioned separately for **Development** and **Production** 
 - [Future Improvements](#-future-improvements)
 - [Why This Project?](#-why-this-project)
 - [Author](#-author)
-- [License](#-license)
+
 
 ---
 
@@ -62,11 +62,11 @@ The screenshots below confirm the end-to-end deployment: DNS resolving correctly
 
 **Live Application — https://dev.eva-tee.com/create**
 
-![Flask Live Application](images/Flask.png)
+![Flask Live Application](docs/images/Flask.png)
 
 **Live Application — https://dev.eva-tee.com/celery**
 
-![Flask Live Application](images/celery.png)
+![Flask Live Application](docs/images/celery.png)
 
 
 ---
@@ -112,7 +112,7 @@ The goal is to demonstrate the complete lifecycle of provisioning, deploying, op
 
 # 🏗 Architecture
 
-![Architecture Diagram](images/victor-eyelade-architecture.png)
+![Architecture Diagram](docs/images/victor-eyelade-architecture.png)
 
 ### Architecture Highlights
 
@@ -260,7 +260,7 @@ The architecture follows production-oriented engineering practices commonly adop
 # 📂 Repository Structure
 
 The repository is organized to separate application code, infrastructure, automation, and deployment workflows.
-![Repository Structure](images/project2tree.png)
+![Repository Structure](docs/images/project2tree.png)
 
 
 ---
@@ -763,9 +763,5 @@ Contributions, suggestions, and feedback are always welcome.
 
 ---
 
-## 📄 License
 
-This project is licensed under the MIT License.
-
-See the **LICENSE** file for details.
 
