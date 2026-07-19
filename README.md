@@ -30,29 +30,24 @@ Infrastructure is provisioned separately for **Development** and **Production** 
 ---
 
 ## 📚 Table of Contents
-
 - [Project Screenshot](#-project-screenshot)
 - [Project Overview](#-project-overview)
+- [Why This Project?](#-why-this-project)
 - [Key Features](#-key-features)
 - [Architecture](#-architecture)
 - [Project Metrics](#-project-metrics)
 - [Tech Stack](#-tech-stack)
-- [Skills Demonstrated](#-skills-demonstrated)
-- [Enterprise Practices](#-enterprise-practices)
-- [Repository Structure](#-repository-structure)
-- [Application Features](#-application-features)
 - [Infrastructure Highlights](#-infrastructure-highlights)
 - [Infrastructure Design Decisions](#-infrastructure-design-decisions)
+- [Engineering Challenges & Lessons Learned](#-engineering-challenges--lessons-learned)
 - [CI/CD Pipeline](#-cicd-pipeline)
 - [Deployment Workflow](#-deployment-workflow)
 - [Running Locally](#-running-locally)
 - [Deploying to AWS](#-deploying-to-aws)
-- [Engineering Challenges & Lessons Learned](#-engineering-challenges--lessons-learned)
-- [Key Takeaways](#-key-takeaways)
-- [Future Improvements](#-future-improvements)
-- [Why This Project?](#-why-this-project)
+- [Skills Demonstrated](#-skills-demonstrated)
+- [Production Roadmap](#-production-roadmap)
+- [Repository Structure](#-repository-structure)
 - [Author](#-author)
-
 
 ---
 
@@ -90,23 +85,26 @@ The goal is to demonstrate the complete lifecycle of provisioning, deploying, op
 
 ---
 
+# 🎯 Why This Project?
+
+This project was built to demonstrate the complete lifecycle of deploying and operating modern cloud-native applications on AWS.
+
+Rather than focusing solely on application development, it showcases the engineering practices required to build reliable production systems, including infrastructure automation, secure networking, CI/CD, observability, secrets management, scalability, and operational resilience.
+
+The platform reflects many of the technologies and design patterns used in enterprise DevOps and Cloud Engineering teams, emphasizing not only *how* to deploy applications, but also *how to operate them securely, reliably, and at scale*.
+
+---
+
 # ⭐ Key Features
 
-- Fully automated Infrastructure as Code using Terraform
-- Multi-container application deployed on AWS ECS Fargate
-- Environment separation (Development & Production)
-- PostgreSQL on Amazon RDS (Development)
-- Amazon Aurora PostgreSQL Cluster (Production)
-- ECS Service Connect for internal service discovery
+- Terraform-provisioned AWS infrastructure
+- Multi-environment deployments (dev/prod)
+- ECS Fargate container platform
+- GitHub Actions CI/CD
 - Zero-downtime rolling deployments
-- GitHub Actions CI/CD pipeline
-- Application Auto Scaling
-- AWS Secrets Manager integration
-- AWS KMS encryption
-- Multi-AZ VPC architecture
-- Centralized logging with CloudWatch
-- Secure networking with least-privilege Security Groups
-- Docker Compose support for local development
+- AWS Secrets Manager and KMS integration
+- Multi-AZ networking
+- CloudWatch centralized logging
 
 ---
 
@@ -167,198 +165,41 @@ The goal is to demonstrate the complete lifecycle of provisioning, deploying, op
 
 ---
 
-# 🛠 Skills Demonstrated
-
-This project demonstrates practical experience with modern cloud engineering and DevOps practices including:
-
-### Cloud Engineering
-
-- AWS ECS Fargate
-- Amazon RDS
-- Amazon Aurora
-- Application Load Balancer
-- Route53
-- ACM
-- VPC Design
-- NAT Gateway
-- IAM
-- CloudWatch
-- AWS Secrets Manager
-- AWS KMS
-
-### Infrastructure as Code
-
-- Terraform Modules
-- Dynamic Resource Creation
-- for_each Iteration
-- Conditional Resources
-- Environment-aware Deployments
-- Remote State Management
-- Infrastructure Automation
-
-### DevOps
-
-- Docker
-- Multi-container Applications
-- GitHub Actions
-- Continuous Integration
-- Continuous Deployment
-- Zero-downtime Deployments
-- Rolling Updates
-- Container Image Versioning
-
-### Security
-
-- Least Privilege IAM
-- Security Group Chaining
-- Secrets Management
-- Private Networking
-- Encryption at Rest
-- HTTPS/TLS
-- Internal Service Discovery
-
----
-
-# 🏢 Enterprise Practices
-
-The architecture follows production-oriented engineering practices commonly adopted in enterprise environments.
-
-✅ Infrastructure as Code
-
-✅ Multi-environment Deployments
-
-✅ Immutable Infrastructure
-
-✅ Automated CI/CD
-
-✅ Rolling Deployments
-
-✅ High Availability
-
-✅ Multi-AZ Networking
-
-✅ Private Database Subnets
-
-✅ Service-to-Service Discovery
-
-✅ Secrets Management
-
-✅ Encryption at Rest
-
-✅ Least Privilege Security
-
-✅ Centralized Logging
-
-✅ Infrastructure Automation
-
-✅ Auto Scaling
-
-✅ Environment Isolation
-
----
-
-# 📂 Repository Structure
-
-The repository is organized to separate application code, infrastructure, automation, and deployment workflows.
-![Repository Structure](docs/images/project2tree.png)
-
-
----
-
-# 🚀 Application Features
-
-The platform is more than a simple Flask application. It demonstrates common patterns used in production web applications.
-
-### Web Application
-
-- CRUD blog application built with Flask
-- SQLAlchemy ORM for database interactions
-- Responsive Jinja2 templates
-- Environment-driven configuration
-
-### Background Processing
-
-- Celery worker for asynchronous tasks
-- Redis message broker
-- Fire-and-forget background jobs
-- Delayed task execution
-- Long-running task simulation with live status polling
-
-### Reverse Proxy
-
-- Nginx running as an independent ECS service
-- Reverse proxy to Gunicorn
-- HTTP/2 support
-- Static fallback page for upstream failures (502/503/504)
-
-### Database
-
-- Amazon RDS PostgreSQL for Development
-- Amazon Aurora PostgreSQL Cluster for Production
-- Automatic environment-aware provisioning
-- Private database networking
-
----
-
 # ☁️ Infrastructure Highlights
 
 All AWS infrastructure is provisioned using **Terraform**, following Infrastructure as Code (IaC) best practices.
 
 ## Networking
 
-- Three-tier VPC architecture
-- Public subnets for ALB and NAT Gateway
-- Private ECS subnets
-- Isolated database subnets
-- Multi-AZ deployment
-- Route53 DNS
-- ACM-managed TLS certificates
+- Three-tier VPC architecture spanning two Availability Zones
+- Public subnets for the Application Load Balancer and NAT Gateway
+- Private subnets for ECS services and databases
+- Route 53 DNS with ACM-managed HTTPS certificates
 
 ## Compute
 
-- AWS ECS Fargate
-- Multi-container application
-- Independent ECS Services
-- ECS Service Connect
-- Rolling deployments
-- Auto Scaling
+- Multi-container application deployed on Amazon ECS Fargate
+- ECS Service Connect for private service discovery
+- Zero-downtime rolling deployments with Application Auto Scaling
 
 ## Database
 
-Development automatically provisions:
-
-- Amazon RDS PostgreSQL
-
-Production automatically provisions:
-
-- Amazon Aurora PostgreSQL Cluster
-- Writer instance
-- Reader instance
-
-The infrastructure dynamically provisions the appropriate database based on the selected deployment environment.
+- **Development:** Amazon RDS PostgreSQL
+- **Production:** Amazon Aurora PostgreSQL (writer and reader instances)
+- Environment-aware provisioning from a single Terraform codebase
 
 ## Security
 
-The platform follows a defense-in-depth approach.
-
-- Least privilege IAM roles
-- Security Group chaining
-- Private ECS networking
-- Private RDS networking
-- No direct database exposure
-- Secrets stored in AWS Secrets Manager
-- Encryption using AWS KMS
-- HTTPS enforced with ACM
+- Least-privilege IAM roles and Security Groups
+- AWS Secrets Manager for application secrets
+- AWS KMS encryption for sensitive resources
+- Private networking with no direct database exposure
 
 ## Observability
 
-Operational visibility is provided through CloudWatch.
-
-- CloudWatch Log Groups
-- Logs Insights saved queries
-- Centralized service logs
-- CloudWatch alarms
-- Deployment monitoring
+- Centralized application logging with Amazon CloudWatch
+- CloudWatch Insights for log analysis
+- Deployment monitoring and operational visibility
 
 ---
 
@@ -427,6 +268,67 @@ Terraform automatically stores:
 inside **AWS Secrets Manager**, encrypted with a dedicated AWS KMS key.
 
 GitHub Actions retrieves these secrets securely during deployment.
+
+---
+
+
+# 🧩 Engineering Challenges & Lessons Learned
+
+Building production infrastructure is as much about solving operational problems as it is about writing Terraform. Throughout this project, I encountered and resolved several real-world infrastructure and deployment challenges that improved the platform's reliability and resilience.
+
+## Key Challenges Solved
+
+### GitHub Actions Workflow Discovery
+
+Initially, GitHub Actions failed to detect the Terraform workflow because it was placed outside the `.github/workflows` directory. Correcting the workflow location restored automatic workflow discovery.
+
+---
+
+### Terraform Remote State Authentication
+
+Terraform could not initialize the remote S3 backend because AWS credentials were configured after the initialization step.
+
+Reordering the workflow to authenticate with AWS before running `terraform init` resolved the issue and ensured reliable remote state management.
+
+---
+
+### ECS Logging Configuration
+
+ECS tasks failed during startup because the referenced CloudWatch Log Groups had not yet been provisioned.
+
+CloudWatch Log Groups are now automatically created through Terraform before task deployment, ensuring successful container startup and centralized logging.
+
+---
+
+### Environment Configuration Management
+
+Terraform variable files required for CI deployments were unintentionally ignored by Git due to default `.gitignore` rules.
+
+The repository was updated to explicitly track only the required environment configuration files while continuing to protect sensitive configuration.
+
+---
+
+### Service Startup Dependencies
+
+During local development, the application occasionally attempted to connect to PostgreSQL and Redis before either service was ready.
+
+Docker health checks and dependency conditions were implemented to ensure containers start only after required services report a healthy state.
+
+---
+
+### Graceful Failure Handling
+
+Users were presented with default Nginx gateway errors whenever the application restarted during deployments.
+
+Custom fallback pages were implemented to provide a cleaner user experience during rolling deployments or temporary upstream outages.
+
+---
+
+### Infrastructure Maintainability
+
+Instead of duplicating Terraform resources for each ECS service, the infrastructure uses dynamic `for_each` expressions and reusable task definition templates.
+
+This significantly reduced code duplication while making future service expansion considerably easier.
 
 ---
 
@@ -512,6 +414,7 @@ This enables deployment requests from:
 - Release orchestration workflows
 
 ---
+
 
 # 📈 Deployment Workflow
 
@@ -638,80 +541,22 @@ Infrastructure provisioning can also be executed directly from GitHub Actions us
 
 ---
 
-# 🧩 Engineering Challenges & Lessons Learned
+# 🛠 Skills Demonstrated
 
-Building production infrastructure is as much about solving operational problems as it is about writing Terraform. Throughout this project, I encountered and resolved several real-world infrastructure and deployment challenges that improved the platform's reliability and resilience.
+This project demonstrates practical experience with modern cloud engineering and DevOps practices including:
 
-## Key Challenges Solved
-
-### GitHub Actions Workflow Discovery
-
-Initially, GitHub Actions failed to detect the Terraform workflow because it was placed outside the `.github/workflows` directory. Correcting the workflow location restored automatic workflow discovery.
-
----
-
-### Terraform Remote State Authentication
-
-Terraform could not initialize the remote S3 backend because AWS credentials were configured after the initialization step.
-
-Reordering the workflow to authenticate with AWS before running `terraform init` resolved the issue and ensured reliable remote state management.
+| AWS Services | Infrastructure as Code | DevOps & Containers | Security |
+|--------------|------------------------|---------------------|----------|
+| Amazon ECS Fargate | Terraform | Docker | IAM |
+| Amazon RDS & Aurora | Terraform Modules | GitHub Actions | AWS Secrets Manager |
+| Amazon ECR | Remote State | CI/CD Pipelines | AWS KMS |
+| Application Load Balancer | `for_each` & Dynamic Resources | Rolling Deployments | Security Groups |
+| Route53 & ACM | Multi-Environment Infrastructure | Docker Compose | Private Networking |
+| CloudWatch | Infrastructure Automation | Container Orchestration | HTTPS/TLS |
 
 ---
 
-### ECS Logging Configuration
-
-ECS tasks failed during startup because the referenced CloudWatch Log Groups had not yet been provisioned.
-
-CloudWatch Log Groups are now automatically created through Terraform before task deployment, ensuring successful container startup and centralized logging.
-
----
-
-### Environment Configuration Management
-
-Terraform variable files required for CI deployments were unintentionally ignored by Git due to default `.gitignore` rules.
-
-The repository was updated to explicitly track only the required environment configuration files while continuing to protect sensitive configuration.
-
----
-
-### Service Startup Dependencies
-
-During local development, the application occasionally attempted to connect to PostgreSQL and Redis before either service was ready.
-
-Docker health checks and dependency conditions were implemented to ensure containers start only after required services report a healthy state.
-
----
-
-### Graceful Failure Handling
-
-Users were presented with default Nginx gateway errors whenever the application restarted during deployments.
-
-Custom fallback pages were implemented to provide a cleaner user experience during rolling deployments or temporary upstream outages.
-
----
-
-### Infrastructure Maintainability
-
-Instead of duplicating Terraform resources for each ECS service, the infrastructure uses dynamic `for_each` expressions and reusable task definition templates.
-
-This significantly reduced code duplication while making future service expansion considerably easier.
-
----
-
-# 💡 Key Takeaways
-
-This project reinforced several important cloud engineering principles:
-
-- Infrastructure should be reproducible through Infrastructure as Code.
-- Security should be built into the architecture from the beginning.
-- Automation reduces operational overhead and deployment risk.
-- Observability is essential for troubleshooting production workloads.
-- Modular Terraform configurations improve scalability and maintainability.
-- Production systems require resilience, not just functionality.
-
----
-
-# 🚀 Future Improvements
+# 🚀 Production Roadmap
 
 Although the platform is production-ready, several enhancements could further strengthen its capabilities.
 
@@ -733,13 +578,10 @@ Although the platform is production-ready, several enhancements could further st
 
 ---
 
-# 🎯 Why This Project?
+# 📂 Repository Structure
 
-This project was built to demonstrate the complete lifecycle of deploying and operating modern cloud-native applications on AWS.
-
-Rather than focusing solely on application development, it showcases the engineering practices required to build reliable production systems, including infrastructure automation, secure networking, CI/CD, observability, secrets management, scalability, and operational resilience.
-
-The platform reflects many of the technologies and design patterns used in enterprise DevOps and Cloud Engineering teams, emphasizing not only *how* to deploy applications, but also *how to operate them securely, reliably, and at scale*.
+The repository is organized to separate application code, infrastructure, automation, and deployment workflows.
+![Repository Structure](docs/images/project2tree.png)
 
 ---
 
